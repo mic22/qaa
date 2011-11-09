@@ -1,0 +1,18 @@
+<div class="users form">
+<?php echo $this->Form->create('User');?>
+	<fieldset>
+		<legend><?php __('Edit User'); ?></legend>
+	<?php
+		echo $this->Form->input('id');
+		echo $this->Form->input('email');
+		echo $this->Form->input('password');
+		echo $this->Form->input('name');
+		echo $this->Form->input('surname');
+		echo $this->Form->input('city');
+		echo $this->Form->input('date_registered');
+		echo $this->Form->input('date_last_logged_in');
+		echo $this->Form->input('type');
+	?>
+	</fieldset>
+<?php echo $this->Form->end(__('Submit', true));?>
+</div>

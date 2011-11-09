@@ -1,0 +1,101 @@
+body
+{
+	background: url('../img/h_bg.png') repeat-x
+}
+
+#top
+{
+	width: 960px;
+	position: relative;
+	margin: 0 auto;
+	padding: 32px 0 0 0
+}
+
+#top h1
+{
+	background: url('../img/logo.png') no-repeat;
+	height: 40px;
+	text-indent: -2000em
+}
+
+#top .main_menu
+{
+	list-style-type: none;
+	padding: 1px 0 0 0;
+	margin: 0;
+	border: 5px solid #414a4e;
+	background: white url('../img/mm_bg.png') repeat-x center;
+	border-radius: 0 0 10px 10px;
+	height: 23px;
+	box-shadow: 2px 1px 7px rgba(0, 0, 0, .5);
+	position: absolute;
+	top: 0;
+	right: 0
+}
+
+#top .main_menu li
+{
+	float: left;
+	margin: 0 8px;
+}
+
+#footer
+{
+	padding: 20px 0
+}
+
+#user_panel_box ul
+{
+	list-style-type: none
+}
+
+.input
+{
+	margin: 0 0 14px 0
+}
+
+.input label
+{
+	display: block
+}
+
+.input input
+{
+	padding: 4px
+}
+
+#flashMessage
+{
+	height: 17px;
+	padding: 8px 8px 8px 15px;
+	margin: 5px 0;
+	border: 1px solid;
+	font-weight: bold;
+	position: relative
+}
+
+#flashMessage a {
+	color: inherit;
+	font-weight: normal
+}
+
+.message {
+	border-color: #ece3c6;
+	color: #de961d;	
+	background: #fff4cc
+}
+.error {
+	border-color: #e4cab1;
+	color: #b32f18;	
+	background: #fed3b1
+}
+/*.blue {
+	border-color: #dcdfe6;
+	color: #4f7093;	
+	background: #e3edf6
+}
+.message {
+	border-color: #d2e2c5;
+	color: #6fa452;	
+	background: #e1f3cb
+}*/

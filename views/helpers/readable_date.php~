@@ -1,0 +1,34 @@
+<?php
+	class ReadableDateHelper extends AppHelper {
+		function convert($date_posted)
+		{
+			$date=new DateTime();
+			$current_timestamp=$date->getTimestamp();
+	
+			$date=new DateTime($date_posted);
+			$date_posted_timestamp=$date->getTimestamp();
+	
+			$date->setTimestamp($current_timestamp-$date_posted_timestamp);
+			$difference=$date->getTimestamp();
+	
+			$periods = array('second', 'minute', 'hour', 'day', 'week', 'month', 'year', 'decade');
+			$lengths = array('60', '60', '24', '7', '4.35', '12', '10');
+
+			if($difference>0)
+				$ending='ago';
+			else
+			{
+				$difference=-$difference;
+				$ending='to go';
+			}
+	
+			for($i=0; $difference>=$lengths[$i]; $i++)	
+				$difference/=$lengths[$i];
+
+			$difference=round($difference);
+			if($difference!=1)
+				$periods[$i].='s';
+			return $difference.' '.$periods[$i].' '.$ending;
+		}
+	}
+?>

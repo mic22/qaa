@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>
+			<?php __('Q&A:'); ?>
+			<?php echo $title_for_layout; ?>
+		</title>
+		<?= $this->Html->meta('icon'); ?>
+		
+		<!--CSS-->
+		<?= $this->Html->css('blueprint/screen', 'stylesheet', array('media'=>'screen, projection')); ?>
+		<?= $this->Html->css('blueprint/print', 'stylesheet', array('media'=>'print')); ?>
+		<!--[if lt IE 8]>
+			<?= $this->Html->css('blueprint/ie', 'stylesheet', array('media'=>'screen, projection')); ?>
+		<![endif]-->
+		<?= $this->Html->css('blueprint/plugins/actions/actions', 'stylesheet', array('media'=>'screen, projection')); ?>
+		<?= $this->Html->css('blueprint/plugins/fancy-type/screen.css', 'stylesheet', array('media'=>'screen, projection')); ?>
+		<?= $this->Html->css('blueprint/src/forms', 'stylesheet', array('media'=>'screen, projection')); ?>
+		<?= $this->Html->css('style'); ?>
+		
+		<!--JS-->
+		<?= $this->Html->script('add_tags'); ?>
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+			google.load("jquery", "1.4.4");
+			google.setOnLoadCallback(function() {
+				init_tags('#QuestionTags', '#tags');
+			});
+		</script>
+		<?= $scripts_for_layout; ?>
+	</head>
+	<body>
+		<div id="top">
+			<h1>question&answer</h1>
+			<ul class="main_menu">
+				<li class="action a_home_page"><?= $this->Html->link('Home', '/'); ?></li>
+				<li class="action a_comment"><?= $this->Html->link('Ask question', '/questions/add'); ?></li>
+				<li class="action a_database"><?= $this->Html->link('Browse', '/categories'); ?></li>
+			</ul>
+		</div>
+		<div class="container">
+			<div class="span-18 border">
+				<?= $this->Session->flash(); ?>
+				<?= $content_for_layout; ?>
+			</div>
+			
+			<div class="span-6 last">
+				<div id="user_panel_box" class="box">
+				<?php
+					if(isset($currentUser))
+						echo $this->element('user_panel');
+					else
+					{
+						echo 'Hello, guest.<br>You can '.$this->Html->link(__('login', true), '/users/login').' or '.$this->Html->link(__('register', true), '/users/register');
+					}
+				?>
+				</div>
+				
+				<h2 class="caps">Categories</h2>
+				<div id="categories_box" class="box">
+					<?= $this->element('categories_list'); ?>
+				</div>
+			</div>
+	
+			<div class="span-24">
+				&copy; mic22 2011 <?= $this->Html->image('cake.power.gif'); ?> <?= $this->Html->image('blueprintcss.png'); ?>
+			</div>
+		</div>
+	</body>
+</html>

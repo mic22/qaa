@@ -1,0 +1,7 @@
+<h3>Howdy, <?= $this->Html->link($this->Extras->username($currentUser['User']['email']), '/users/view/'.$currentUser['User']['id']); ?></h3>
+<ul>
+	<li class="action a_legend"><?= $this->Html->link('manage your questions', '/questions/my'); ?></li>
+	<li class="action a_user_edit"><?= $this->Html->link('edit your profile', '/users/edit/'.$currentUser['User']['id']); ?></li>
+	<li class="action a_door_out"><?= $this->Html->link('logout', '/users/logout'); ?></li>
+</ul>
+

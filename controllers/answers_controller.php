@@ -1,0 +1,70 @@
+<?php
+class AnswersController extends AppController {
+
+	var $name = 'Answers';
+
+	function index() {
+		$this->Answer->recursive = 0;
+		$this->set('answers', $this->paginate());
+	}
+
+	function view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid answer', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('answer', $this->Answer->read(null, $id));
+	}
+
+	function add() {
+		$this->data['Answer']['user_id']=$this->Auth->user('id');
+		$this->data['Answer']['date_posted']=date("Y-m-d H:i:s");
+		//debug($this->data);
+		if (!empty($this->data)) {
+			$this->Answer->create();
+			if ($this->Answer->save($this->data)) {
+				$this->Session->setFlash(__('The answer has been saved', true));
+				$this->redirect(array('controller'=>'questions', 'action' => 'view', $this->data['Answer']['question_id']));
+			} else {
+				$this->Session->setFlash(__('The answer could not be saved. Please, try again.', true));
+			}
+		}
+		$users = $this->Answer->User->find('list');
+		$questions = $this->Answer->Question->find('list');
+		$this->set(compact('users', 'questions'));
+	}
+
+	function edit($id = null) {
+		if (!$id && empty($this->data)) {
+			$this->Session->setFlash(__('Invalid answer', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		if (!empty($this->data)) {
+			if ($this->Answer->save($this->data)) {
+				$this->Session->setFlash(__('The answer has been saved', true));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The answer could not be saved. Please, try again.', true));
+			}
+		}
+		if (empty($this->data)) {
+			$this->data = $this->Answer->read(null, $id);
+		}
+		$users = $this->Answer->User->find('list');
+		$questions = $this->Answer->Question->find('list');
+		$this->set(compact('users', 'questions'));
+	}
+
+	function delete($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid id for answer', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		if ($this->Answer->delete($id)) {
+			$this->Session->setFlash(__('Answer deleted', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash(__('Answer was not deleted', true));
+		$this->redirect(array('action' => 'index'));
+	}
+}

@@ -1,0 +1,7 @@
+<div class="question push-1">
+	<h3><?= $this->Html->link($question['title'], '/questions/view/'.$question['id']); ?></h3>
+	<ul>
+		<li><? if($answers_count!=0) echo $answers_count; else echo 'No'; ?> answers so far, <?= $this->Html->link('add one!', '/questions/view/'.$question['id']); ?></li>
+		<li>Asked <?= $this->ReadableDate->convert($question['date_posted']); ?> by <?= $this->Html->link($this->Extras->username($question['User']['email']), '/users/view/'.$question['user_id']); ?> in <?= $question['name']; ?></li>
+	</ul>
+</div>
